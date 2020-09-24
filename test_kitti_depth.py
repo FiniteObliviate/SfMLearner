@@ -6,6 +6,9 @@ import os
 import PIL.Image as pil
 from SfMLearner import SfMLearner
 
+import cv2  # added by ZYD
+import matplotlib.pyplot as plt  # added by ZYD
+
 flags = tf.app.flags
 flags.DEFINE_integer("batch_size", 4, "The size of of a sample batch")
 flags.DEFINE_integer("img_height", 128, "Image height")
@@ -56,7 +59,18 @@ def main(_):
                 if idx >= len(test_files):
                     break
                 pred_all.append(pred['depth'][b,:,:,0])
+
+                #added by ZYD: to show pictures
+                plt.subplot(211)
+                plt.imshow(scaled_im, cmap='gray')  
+                plt.subplot(212)
+                plt.imshow(pred['depth'][b,:,:,0], cmap='gray')
+                plt.pause(1)
+                # end adding
+
         np.save(output_file, pred_all)
+
+    plt.close()  #added by ZYD
 
 if __name__ == '__main__':
     tf.app.run()
