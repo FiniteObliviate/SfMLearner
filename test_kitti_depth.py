@@ -44,7 +44,7 @@ def main(_):
                 idx = t + b
                 if idx >= len(test_files):
                     break
-                fh = open(test_files[idx], 'r')
+                fh = open(test_files[idx], 'rb')  #由r改为rb，否则出decode报错
                 raw_im = pil.open(fh)
                 scaled_im = raw_im.resize((FLAGS.img_width, FLAGS.img_height), pil.ANTIALIAS)
                 inputs[b] = np.array(scaled_im)
