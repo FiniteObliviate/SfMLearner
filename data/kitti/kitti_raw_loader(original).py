@@ -8,8 +8,8 @@ class kitti_raw_loader(object):
     def __init__(self, 
                  dataset_dir,
                  split,
-                 img_height=1280,
-                 img_width=1024,
+                 img_height=256,
+                 img_width=256,
                  seq_length=5):
         dir_path = os.path.dirname(os.path.realpath(__file__))
         static_frames_file = dir_path + '/static_frames.txt'
@@ -22,7 +22,8 @@ class kitti_raw_loader(object):
         self.img_width = img_width
         self.seq_length = seq_length
         self.cam_ids = ['02', '03']
-        self.date_list = ['d3k1']
+        self.date_list = ['2011_09_26', '2011_09_28', '2011_09_29', 
+                          '2011_09_30', '2011_10_03']
         self.collect_static_frames(static_frames_file)
         self.collect_train_frames()
 

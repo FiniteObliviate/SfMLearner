@@ -84,6 +84,14 @@ def main():
                                         img_height=args.img_height,
                                         img_width=args.img_width,
                                         seq_length=args.seq_length)
+    # added by ZYD
+    if args.dataset_name == 'd3k1_raw_eigen':
+        from kitti.d3k1_odom_loader import d3k1_odom_loader
+        data_loader = kitti_odom_loader(args.dataset_dir,
+                                        img_height=args.img_height,
+                                        img_width=args.img_width,
+                                        seq_length=args.seq_length)
+
 
     Parallel(n_jobs=args.num_threads)(delayed(dump_example)(n, args) for n in range(data_loader.num_train))
 
