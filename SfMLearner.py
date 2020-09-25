@@ -217,7 +217,8 @@ class SfMLearner(object):
                                  save_summaries_secs=0, 
                                  saver=None)
         config = tf.ConfigProto()
-        config.gpu_options.allow_growth = True
+        # config.gpu_options.allow_growth = True
+        config.gpu_options.per_process_gpu_memory_fraction = 0.8  # added by ZYD
         with sv.managed_session(config=config) as sess:
             print('Trainable variables: ')
             for var in tf.trainable_variables():
